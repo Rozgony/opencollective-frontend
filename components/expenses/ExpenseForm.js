@@ -98,6 +98,7 @@ const getDefaultExpense = collective => ({
   privateMessage: '',
   invoiceInfo: '',
   currency: collective.currency,
+  taxes: [],
   payeeLocation: {
     address: '',
     country: null,
@@ -405,7 +406,7 @@ const ExpenseFormBody = ({
         <StyledCard mt={4} p={[16, 16, 32]} overflow="initial" ref={formRef}>
           <HiddenFragment show={step === STEPS.PAYEE}>
             <Flex alignItems="center" mb={16}>
-              <Span color="black.900" fontSize="16px" lineHeight="21px" fontWeight="bold">
+              <Span color="black.900" fontSize="18px" lineHeight="26px" fontWeight="bold">
                 {formatMessage(msg.stepPayee)}
               </Span>
               <Box ml={2}>
@@ -422,8 +423,8 @@ const ExpenseFormBody = ({
                 as="label"
                 htmlFor="expense-description"
                 color="black.900"
-                fontSize="16px"
-                lineHeight="24px"
+                fontSize="18px"
+                lineHeight="26px"
                 fontWeight="bold"
               >
                 {values.type === expenseTypes.FUNDING_REQUEST || values.type === expenseTypes.GRANT ? (
@@ -433,7 +434,7 @@ const ExpenseFormBody = ({
                     values={{
                       small(msg) {
                         return (
-                          <Span fontWeight="normal" color="black.600">
+                          <Span fontSize="14px" fontWeight="normal" color="black.600" fontStyle="italic">
                             {msg}
                           </Span>
                         );
@@ -443,11 +444,11 @@ const ExpenseFormBody = ({
                 ) : (
                   <FormattedMessage
                     id="Expense.EnterExpenseTitle"
-                    defaultMessage="Enter expense title <small>(Public)</small>"
+                    defaultMessage="Expense title <small>(Public)</small>"
                     values={{
                       small(msg) {
                         return (
-                          <Span fontWeight="normal" color="black.600">
+                          <Span fontSize="14px" fontWeight="normal" color="black.600" fontStyle="italic">
                             {msg}
                           </Span>
                         );
@@ -515,7 +516,7 @@ const ExpenseFormBody = ({
               )}
 
               <Flex alignItems="center" my={24}>
-                <Span color="black.900" fontSize="16px" lineHeight="21px" fontWeight="bold">
+                <Span color="black.900" fontSize="18px" lineHeight="26px" fontWeight="bold">
                   {formatMessage(isReceipt ? msg.stepReceipt : isGrant ? msg.stepFundingRequest : msg.stepInvoice)}
                 </Span>
                 <StyledHr flex="1" borderColor="black.300" mx={2} />
