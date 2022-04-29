@@ -79,6 +79,28 @@ const BudgetStats = ({ collective, stats }) => {
         </StatTitle>
         <StatAmount amount={stats.balance.valueInCents} currency={collective.currency} />
       </StatContainer>
+      {stats.consolidatedBalance?.valueInCents &&
+        stats.consolidatedBalance?.valueInCents !== stats.balance.valueInCents && (
+          <StatContainer data-cy="budgetSection-consolidated-balance">
+            <StatTitle>
+              <Container
+                display="inline-block"
+                fontSize="11px"
+                mr="5px"
+                fontWeight="500"
+                width="12px"
+                textAlign="center"
+              >
+                {getCurrencySymbol(collective.currency)}
+              </Container>
+              <FormattedMessage
+                id="CollectivePage.SectionBudget.ConsolidatedBalance"
+                defaultMessage="Consolidated Balance"
+              />
+            </StatTitle>
+            <StatAmount amount={stats.consolidatedBalance.valueInCents} currency={collective.currency} />
+          </StatContainer>
+        )}
       <StatContainer>
         <StatTitle>
           <ShowChart size="12px" />
@@ -165,6 +187,7 @@ BudgetStats.propTypes = {
     balance: AmountPropTypeShape.isRequired,
     yearlyBudget: AmountPropTypeShape.isRequired,
     activeRecurringContributions: PropTypes.object,
+    consolidatedBalance: AmountPropTypeShape,
     totalAmountReceived: AmountPropTypeShape,
     totalAmountRaised: AmountPropTypeShape,
     totalNetAmountRaised: AmountPropTypeShape,
